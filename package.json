@@ -8,7 +8,11 @@
     "type": "git",
     "url": "https://github.com/ben010783/SameMovies.git"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
-    "express": "3.4.8"
+    "express": "3.4.8",
+    "ejs": "*"
   }
 }
