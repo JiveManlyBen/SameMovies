@@ -26,13 +26,13 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Same Movies</a>
+            <a class="navbar-brand" href="/">Same Movies</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="<% if (section === "home") { %>active<% } %>"><a href="/">Home</a></li>
+              <li class="<% if (section === "about") { %>active<% } %>"><a href="/about/">About</a></li>
+              <li><a href="http://benlevy.com/blog/contact/">Contact</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">
