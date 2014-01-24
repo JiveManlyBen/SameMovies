@@ -30,7 +30,9 @@ a {
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
-
+.page-header {
+margin: 20px 0 20px;
+}
 #wrap > .container {
   padding: 60px 15px 0;
 }
