@@ -6,6 +6,16 @@ body {
   height: 100%;
 }
 
+h1, h2, h3 {
+  margin-top: 10px;
+}
+
+@media (max-width: 960px) {
+  h2 {
+    font-size: 20px;
+  }
+}
+
 a {
   color: #00B7FF;
 }
@@ -31,13 +41,40 @@ a {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 .page-header {
-margin: 20px 0 20px;
+  margin: 10px 0 10px;
 }
 #wrap > .container {
   padding: 60px 15px 0;
 }
 .container .text-muted {
   margin: 20px 0;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.form-control.half {
+  width: 49%;
+}
+
+@media (min-width: 960px) {
+  .btn.center {
+    width: 20%;
+  }
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #footer > .container {

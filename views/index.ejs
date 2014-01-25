@@ -1,10 +1,11 @@
 <% include header %>
       <div class="container">
-        <div class="page-header">
-          <h1><%= title %></h1>
+        <div>
+          <h2>Compare two movies</h2>
+          <input type="text" class="form-control left half" placeholder="First movie" required="" autofocus="">
+          <input type="text" class="form-control right half" placeholder="Second movie" required="" autofocus="">
+          <button class="btn btn-primary btn-block form-control center" type="submit">Search</button>
         </div>
-        <p>Welcome to <%= title %></p>
-        <p><a href="/movie">movies</a></p>
       </div>
     </div>
 <% include footer %>
