@@ -1,27 +1,27 @@
 <% include header %>
       <div class="container">
-        <% if (results !== null) { %>
+        <% if (results.length > 1) { %>
 <div class="compare-results">
 
-<% if (results.first !== null && results.second !== null) { %>
+<% if (results[0] !== null && results[1] !== null) { %>
 <div class="compare-results btn-group left">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <%= results.first[0].Title %> <span class="caret"></span>
+    <%= results[0][0].Title %> <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <% for(var i = 1; i < results.first.length; i++) { %>
-      <li><a href="#"><%= results.first[i].Title %></a></li>
+    <% for(var i = 1; i < results[0].length; i++) { %>
+      <li><a href="#"><%= results[0][i].Title %></a></li>
     <% } %>
   </ul>
 </div>
 
 <div class="compare-results btn-group right">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <%= results.second[0].Title %> <span class="caret"></span>
+    <%= results[1][0].Title %> <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <% for(var i = 1; i < results.second.length; i++) { %>
-      <li><a href="#"><%= results.second[i].Title %></a></li>
+    <% for(var i = 1; i < results[1].length; i++) { %>
+      <li><a href="#"><%= results[1][i].Title %></a></li>
     <% } %>
   </ul>
 </div>

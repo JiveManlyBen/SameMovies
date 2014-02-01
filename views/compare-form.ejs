@@ -1,8 +1,8 @@
        <form id="movie-compare" action="/compare/" method="post"> 
          <div>
            <h2>Compare two movies</h2>
-           <input id="first" name="first" type="text" class="form-control left half" placeholder="First movie" required="" autofocus="">
-           <input id="second" name="second" type="text" class="form-control right half" placeholder="Second movie" required="">
+           <input id="first" name="first" type="text" class="form-control left half" placeholder="First movie" required="" autofocus="" <% if (typeof terms !== 'undefined' && terms[0] !== undefined){ %>value="<%= terms[0] %>"<% } %>>
+           <input id="second" name="second" type="text" class="form-control right half" placeholder="Second movie" required="" <% if (typeof terms !== 'undefined' && terms[1] !== undefined){ %>value="<%= terms[1] %>"<% } %>>
            <input id="type" name="type" type="hidden" value="movie">
            <button type="submit" class="btn btn-primary btn-block form-control center">Search</button>
          </div>
