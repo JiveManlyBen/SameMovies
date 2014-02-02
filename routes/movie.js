@@ -20,6 +20,9 @@ exports.compare = function(req, res){
     console.error("Could not connect to " + options.host);
     res.render('compare', options.page);
   }
+  function movieFilter(element) {
+    return element.Type === 'movie';
+  }
   var terms = [ req.body.first, req.body.second ];
   var options = {
     host: 'www.omdbapi.com',
@@ -36,14 +39,14 @@ exports.compare = function(req, res){
     response1.on('data', function(chunk1) {
       console.log('body: ' + chunk1);
       options.path = pathForSearch(terms[1]);
-      var result = JSON.parse(chunk1).Search;
+      var result = JSON.parse(chunk1).Search.filter(movieFilter);
       if (result)
         options.page.results.push(result);
       var request2 = require('http').request(options, function(response2) {
         response2.setEncoding('utf8');
         response2.on('data', function(chunk2) {
           console.log('body: ' + chunk2);
-          var result = JSON.parse(chunk2).Search;
+          var result = JSON.parse(chunk2).Search.filter(movieFilter);
           if (result)
             options.page.results.push(result);
           res.render('compare', options.page);
