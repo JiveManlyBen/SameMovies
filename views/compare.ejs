@@ -5,23 +5,19 @@
 
 <% if (results[0] !== null && results[1] !== null) { %>
 <div class="compare-results btn-group left">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <%= results[0][0].Title %> <span class="caret"></span>
-  </button>
+  <button type="button" class="btn btn-default dropdown-toggle compare-results first" data-toggle="dropdown" value="<%= results[0][0].imdbID %>"><%= results[0][0].Title %><span class="caret"></span></button>
   <ul class="dropdown-menu" role="menu">
     <% for(var i = 1; i < results[0].length; i++) { %>
-      <li><a href="#"><%= results[0][i].Title %></a></li>
+      <li class="compare-results"><a href="#<%= results[0][i].imdbID %>" class="compare-results first"><%= results[0][i].Title %></a></li>
     <% } %>
   </ul>
 </div>
 
 <div class="compare-results btn-group right">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <%= results[1][0].Title %> <span class="caret"></span>
-  </button>
+  <button type="button" class="btn btn-default dropdown-toggle compare-results second" data-toggle="dropdown" value="<%= results[1][0].imdbID %>"><%= results[1][0].Title %><span class="caret"></span></button>
   <ul class="dropdown-menu" role="menu">
     <% for(var i = 1; i < results[1].length; i++) { %>
-      <li><a href="#"><%= results[1][i].Title %></a></li>
+      <li class="compare-results"><a href="#<%= results[0][i].imdbID %>" class="compare-results second"><%= results[1][i].Title %></a></li>
     <% } %>
   </ul>
 </div>

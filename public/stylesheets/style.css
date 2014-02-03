@@ -64,6 +64,10 @@ a {
   }
 }
 
+.btn .caret {
+  margin-left: 10px;
+}
+
 .compare-results.btn-group {
   width: 49%;
 }
