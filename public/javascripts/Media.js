@@ -20,3 +20,11 @@ Media.prototype.load = function (data) {
   this.imdbRating = parseFloat(data.imdbRating);
   this.Type = data.Type;
 }
+
+Media.getComparison = function (m1, m2) {
+  var fields = [];
+  ["Year", "Genre", "Director", "Writer"].map(function(element) {
+    fields.push({name: element, first: m1[element], second: m2[element]});
+  });
+  return fields;
+}
