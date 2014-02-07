@@ -4,7 +4,7 @@ function Media(Title, imdbID) {
 }
 
 Media.prototype.load = function (data) {
-  this.Year = data.Year;
+  this.Year = parseInt(data.Year);
   this.Rated = data.Rated;
   this.Released = data.Released;
   this.Runtime = data.Runtime;
@@ -16,7 +16,7 @@ Media.prototype.load = function (data) {
   this.Country = data.Country;
   this.Awards = data.Awards;
   this.Poster = data.Poster;
-  this.Metascore = data.Metascore;
-  this.imdbRating = data.imdbRating;
+  this.Metascore = parseFloat(data.Metascore);
+  this.imdbRating = parseFloat(data.imdbRating);
   this.Type = data.Type;
 }
