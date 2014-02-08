@@ -1,6 +1,7 @@
 function Media(Title, imdbID) {
   this.Title = Title;
   this.imdbID = imdbID;
+  this.isLoaded = false;
 }
 
 Media.prototype.load = function (data) {
@@ -19,6 +20,7 @@ Media.prototype.load = function (data) {
   this.Metascore = parseFloat(data.Metascore);
   this.imdbRating = parseFloat(data.imdbRating);
   this.Type = data.Type;
+  this.isLoaded = true;
 }
 
 Media.getComparison = function (m1, m2) {
