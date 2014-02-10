@@ -72,6 +72,19 @@ a {
   width: 49%;
 }
 
+.results-row {
+  padding-top: 15px;
+  width: 100%;
+}
+
+.results-row .first, .results-row .second {
+  width: 45%;
+}
+
+.results-row .name {
+  width: 10%;
+}
+
 .left {
   float: left;
 }
