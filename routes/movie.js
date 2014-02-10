@@ -39,16 +39,24 @@ exports.compare = function(req, res){
     response1.on('data', function(chunk1) {
       console.log('body: ' + chunk1);
       options.path = pathForSearch(terms[1]);
-      var result = JSON.parse(chunk1).Search.filter(movieFilter);
-      if (result)
-        options.page.results.push(result);
+      var result1 = JSON.parse(chunk1).Search;
+      if (result1 instanceof Array)
+        result1 = result1.filter(movieFilter);
+      if (result1 !== undefined && result1.length > 0)
+        options.page.results.push(result1);
+      else
+        options.page.results.push(null);
       var request2 = require('http').request(options, function(response2) {
         response2.setEncoding('utf8');
         response2.on('data', function(chunk2) {
           console.log('body: ' + chunk2);
-          var result = JSON.parse(chunk2).Search.filter(movieFilter);
-          if (result)
-            options.page.results.push(result);
+          var result2 = JSON.parse(chunk2).Search;
+          if (result2 instanceof Array)
+            result2 = result2.filter(movieFilter);
+          if (result2 !== undefined && result2.length > 0)
+            options.page.results.push(result2);
+          else
+            options.page.results.push(null);
           res.render('compare', options.page);
         });
       });
