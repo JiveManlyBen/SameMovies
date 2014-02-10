@@ -72,6 +72,10 @@ a {
   width: 49%;
 }
 
+.btn-default.btn-success {
+  text-shadow: 0 1px 0 #000;
+}
+
 .results-row {
   padding-top: 15px;
   width: 100%;

@@ -54,9 +54,12 @@ jQuery(function ($) {
 console.log(arr);
       $("#results-group").empty();
       arr.map(function(e) {
-        var name = "<button type=\"button\" class=\"btn btn-default name\">" + e.name + "</button>";
-        var first = "<button type=\"button\" class=\"btn btn-default first\">" + e.first + "</button>";
-        var second = "<button type=\"button\" class=\"btn btn-default second\">" + e.second + "</button>";
+        var extraClasses = "";
+        if (e.first === e.second)
+          extraClasses = " btn-success";
+        var name = "<button type=\"button\" class=\"btn btn-default name" + extraClasses + "\">" + e.name + "</button>";
+        var first = "<button type=\"button\" class=\"btn btn-default first" + extraClasses + "\">" + e.first + "</button>";
+        var second = "<button type=\"button\" class=\"btn btn-default second" + extraClasses + "\">" + e.second + "</button>";
         $("#results-group").append($("<div class=\"btn-group results-row\">" + first + name + second + "</div><br />"));
       });
     }
