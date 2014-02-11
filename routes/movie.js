@@ -23,6 +23,18 @@ exports.compare = function(req, res){
   function movieFilter(element) {
     return element.Type === 'movie';
   }
+  function parseResults(chunk) {
+    var json;
+    try {
+      json = JSON.parse(chunk).Search;
+    }
+    catch(e) {
+      console.log(e);
+    }
+    finally {
+      return json;
+    }
+  }
   var terms = [ req.body.first, req.body.second ];
   var options = {
     host: 'www.omdbapi.com',
@@ -37,9 +49,10 @@ exports.compare = function(req, res){
   var request1 = require('http').request(options, function(response1) {
     response1.setEncoding('utf8');
     response1.on('data', function(chunk1) {
+      console.log('url: ' + options.path);
       console.log('body: ' + chunk1);
       options.path = pathForSearch(terms[1]);
-      var result1 = JSON.parse(chunk1).Search;
+      var result1 = parseResults(chunk1);
       if (result1 instanceof Array)
         result1 = result1.filter(movieFilter);
       if (result1 !== undefined && result1.length > 0)
@@ -49,8 +62,9 @@ exports.compare = function(req, res){
       var request2 = require('http').request(options, function(response2) {
         response2.setEncoding('utf8');
         response2.on('data', function(chunk2) {
+          console.log('url: ' + options.path);
           console.log('body: ' + chunk2);
-          var result2 = JSON.parse(chunk2).Search;
+          var result2 = parseResults(chunk2);
           if (result2 instanceof Array)
             result2 = result2.filter(movieFilter);
           if (result2 !== undefined && result2.length > 0)
