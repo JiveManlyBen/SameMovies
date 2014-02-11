@@ -51,8 +51,8 @@ jQuery(function ($) {
       if (isEqual)
         extraClasses = " btn-success";
       var nameButton = "<button type=\"button\" class=\"btn btn-default name" + extraClasses + "\">" + name + "</button>";
-      var firstButton = "<button type=\"button\" class=\"btn btn-default first" + extraClasses + "\">" + first + "</button>";
-      var secondButton = "<button type=\"button\" class=\"btn btn-default second" + extraClasses + "\">" + second + "</button>";
+      var firstButton = "<button type=\"button\" class=\"btn btn-default first" + extraClasses + (typeof first !== 'undefined' ? '' : ' hidden') + "\">" + first + "</button>";
+      var secondButton = "<button type=\"button\" class=\"btn btn-default second" + extraClasses + (typeof second !== 'undefined' ? '' : ' hidden') + "\">" + second + "</button>";
       return $("<div class=\"btn-group results-row" + (isFirst ? " top" : "") + "\">" + firstButton + nameButton + secondButton + "</div>");
     }
     if ($("button.compare-results."+"first").length > 0 && $("button.compare-results."+"second").length > 0) {

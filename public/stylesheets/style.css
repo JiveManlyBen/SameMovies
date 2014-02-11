@@ -109,6 +109,10 @@ a {
   clear: both;
 }
 
+.hidden {
+  visibility: none;
+}
+
 #footer > .container {
   padding-left: 15px;
   padding-right: 15px;
