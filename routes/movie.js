@@ -13,7 +13,14 @@ exports.compareForm = function(req, res){
 
 exports.compare = function(req, res){ 
   function pathForSearch(term) {
-    return '/?i=&s=' + term.replace("  ", " ", "gi").replace(" ", "+", "gi");
+    function replaceAll(find, replace, str) {
+      function escapeRegExp(str) {
+        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+      }   
+      return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+    }
+    var path = '/?i=&s=' + replaceAll("  ", " ", term);
+    return replaceAll(" ", "+", path);
   }
   function requestError(err) {
     console.error(err+""); 
