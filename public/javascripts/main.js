@@ -46,21 +46,31 @@ jQuery(function ($) {
     });
   }
   function showComparison() {
+    function getComparisonRow(name, first, second, isEqual, isFirst) {
+      var extraClasses = "";
+      if (isEqual)
+        extraClasses = " btn-success";
+      var nameButton = "<button type=\"button\" class=\"btn btn-default name" + extraClasses + "\">" + name + "</button>";
+      var firstButton = "<button type=\"button\" class=\"btn btn-default first" + extraClasses + "\">" + first + "</button>";
+      var secondButton = "<button type=\"button\" class=\"btn btn-default second" + extraClasses + "\">" + second + "</button>";
+      return $("<div class=\"btn-group results-row" + (isFirst ? " top" : "") + "\">" + firstButton + nameButton + secondButton + "</div>");
+    }
     if ($("button.compare-results."+"first").length > 0 && $("button.compare-results."+"second").length > 0) {
       var ids = [];
       ids[0] = $("button.compare-results."+"first").val();
       ids[1] = $("button.compare-results."+"second").val();
       var arr = Media.getComparison(compareResults[ids[0]], compareResults[ids[1]]);
-console.log(arr);
       $("#results-group").empty();
       arr.map(function(e) {
-        var extraClasses = "";
-        if (e.first === e.second)
-          extraClasses = " btn-success";
-        var name = "<button type=\"button\" class=\"btn btn-default name" + extraClasses + "\">" + e.name + "</button>";
-        var first = "<button type=\"button\" class=\"btn btn-default first" + extraClasses + "\">" + e.first + "</button>";
-        var second = "<button type=\"button\" class=\"btn btn-default second" + extraClasses + "\">" + e.second + "</button>";
-        $("#results-group").append($("<div class=\"btn-group results-row\">" + first + name + second + "</div><br />"));
+        if (e.first instanceof Array && e.second instanceof Array) {
+          var maxElements = Math.max(e.first.length, e.second.length);
+          for (var i = 0; i < maxElements; i++) {
+            $("#results-group").append(getComparisonRow(e.name, e.first[i], e.second[i], (e.first[i] === e.second[i]), (i === 0)));
+          }
+        }
+        else {
+          $("#results-group").append(getComparisonRow(e.name, e.first, e.second, (e.first === e.second), true));
+        }
       });
     }
   }

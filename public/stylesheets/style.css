@@ -77,8 +77,11 @@ a {
 }
 
 .results-row {
-  padding-top: 15px;
   width: 100%;
+}
+
+.results-row.top {
+  padding-top: 15px;
 }
 
 .results-row .first, .results-row .second {

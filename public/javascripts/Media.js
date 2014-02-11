@@ -25,7 +25,7 @@ Media.prototype.load = function (data) {
 
 Media.getComparison = function (m1, m2) {
   var fields = [];
-  ["Year", "Genre", "Director", "Writer"].map(function(element) {
+  ["Director", "Writer", "Actors", "Year", "Genre"].map(function(element) {
     fields.push({name: element, first: m1[element], second: m2[element]});
   });
   return fields;
