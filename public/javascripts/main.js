@@ -59,19 +59,21 @@ jQuery(function ($) {
       var ids = [];
       ids[0] = $("button.compare-results."+"first").val();
       ids[1] = $("button.compare-results."+"second").val();
-      var arr = Media.getComparison(compareResults[ids[0]], compareResults[ids[1]]);
-      $("#results-group").empty();
-      arr.map(function(e) {
-        if (e.first instanceof Array && e.second instanceof Array) {
-          var maxElements = Math.max(e.first.length, e.second.length);
-          for (var i = 0; i < maxElements; i++) {
-            $("#results-group").append(getComparisonRow(e.name, e.first[i], e.second[i], (e.first[i] === e.second[i]), (i === 0)));
+      if (compareResults[ids[0]].isLoaded && compareResults[ids[1]].isLoaded) {
+        var arr = Media.getComparison(compareResults[ids[0]], compareResults[ids[1]]);
+        $("#results-group").empty();
+        arr.map(function(e) {
+          if (e.first instanceof Array && e.second instanceof Array) {
+            var maxElements = Math.max(e.first.length, e.second.length);
+            for (var i = 0; i < maxElements; i++) {
+              $("#results-group").append(getComparisonRow(e.name, e.first[i], e.second[i], (e.first[i] === e.second[i]), (i === 0)));
+            }
           }
-        }
-        else {
-          $("#results-group").append(getComparisonRow(e.name, e.first, e.second, (e.first === e.second), true));
-        }
-      });
+          else {
+            $("#results-group").append(getComparisonRow(e.name, e.first, e.second, (e.first === e.second), true));
+          }
+        });
+      }
     }
   }
   var compareResults = [];
