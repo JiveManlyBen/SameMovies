@@ -58,5 +58,11 @@ describe("Media", function() {
     expect(result[2]["first"][2]).toBe(undefined);
     expect(result[2]["second"].length).toEqual(4);
     expect(result[2]["second"][3]).toEqual("Carrie Fisher");
- });
+  });
+
+  it("should split and merge the writers on the movie", function() {
+    var step = new Media("Step Brothers", "tt0838283");
+    step.load({"Title":"Step Brothers","Year":"2008", "Genre":"Comedy","Director":"Adam McKay","Writer":"Will Ferrell (screenplay), Adam McKay (screenplay), Will Ferrell (story), Adam McKay (story), John C. Reilly (story)","Actors":"Will Ferrell, John C. Reilly, Mary Steenburgen, Richard Jenkins", "imdbID":"tt0838283"});
+    expect(step.Writer.length).toEqual(3);
+  });
 });

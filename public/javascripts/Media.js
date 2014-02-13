@@ -8,13 +8,27 @@ Media.prototype.load = function (data) {
   function getArray(string) {
     return typeof string === 'undefined' ? [] : string.split(", ");
   }
+  function getWriters(stringArray) {
+    var writerMap = [], writerArray = [];
+    stringArray.forEach(function(value, index) {
+      var writer = new Writer(value);
+      if (typeof writerMap[writer.Name] === 'undefined')
+        writerMap[writer.Name] = writer;
+      else
+        writerMap[writer.Name].merge(writer);
+    });
+    for (var w in writerMap) {
+      writerArray.push(w);
+    }
+    return writerArray;
+  }
   this.Year = parseInt(data.Year);
   this.Rated = data.Rated;
   this.Released = data.Released;
   this.Runtime = data.Runtime;
   this.Genre = data.Genre;
   this.Director = getArray(data.Director);
-  this.Writer = data.Writer;
+  this.Writer = getWriters(getArray(data.Writer));
   this.Actors = getArray(data.Actors);
   this.Plot = data.Plot;
   this.Country = data.Country;
