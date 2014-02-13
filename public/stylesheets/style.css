@@ -109,8 +109,8 @@ a {
   clear: both;
 }
 
-.hidden {
-  visibility: none;
+.no-show {
+  visibility: hidden !important;
 }
 
 #footer > .container {

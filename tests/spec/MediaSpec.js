@@ -36,7 +36,7 @@ describe("Media", function() {
     expect(result[3]["name"]).toEqual("Year");
     expect(result[3]["first"]).toEqual(1980);
     expect(result[3]["second"]).toBe(undefined);
-    m2.load({"Title":"Star Wars: Episode VI - Return of the Jedi","Year":"1983","Rated":"PG","Released":"25 May 1983","Runtime":"134 min","Genre":"Action, Adventure, Fantasy","Director":"Richard Marquand","Writer":"Lawrence Kasdan (screenplay), George Lucas (screenplay), George Lucas (story)","Actors":"Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams","Plot":"After rescuing Han Solo from the palace of Jabba the Hutt, the Rebels attempt to destroy the Second Death Star, while Luke Skywalker tries to bring his father back to the Light Side of the Force.","Language":"English","Country":"USA","Awards":"Nominated for 4 Oscars. Another 12 wins & 14 nominations.","Poster":"http://ia.media-imdb.com/images/M/MV5BMjE5MTM3ODU5MV5BMl5BanBnXkFtZTcwOTYzNjk2OQ@@._V1_SX300.jpg","Metascore":"52","imdbRating":"8.4","imdbVotes":"435,424","imdbID":"tt0086190","Type":"movie","Response":"True"});
+    m2.load({"Title":"Star Wars: Episode VI - Return of the Jedi","Year":"1983","Rated":"PG","Released":"25 May 1983","Runtime":"134 min","Genre":"Action, Adventure, Fantasy","Director":"Richard Marquand","Writer":"Lawrence Kasdan (screenplay), George Lucas (screenplay), George Lucas (story)","Actors":"Mark Hamill, Harrison Ford, Billy Dee Williams, Carrie Fisher","Plot":"After rescuing Han Solo from the palace of Jabba the Hutt, the Rebels attempt to destroy the Second Death Star, while Luke Skywalker tries to bring his father back to the Light Side of the Force.","Language":"English","Country":"USA","Awards":"Nominated for 4 Oscars. Another 12 wins & 14 nominations.","Poster":"http://ia.media-imdb.com/images/M/MV5BMjE5MTM3ODU5MV5BMl5BanBnXkFtZTcwOTYzNjk2OQ@@._V1_SX300.jpg","Metascore":"52","imdbRating":"8.4","imdbVotes":"435,424","imdbID":"tt0086190","Type":"movie","Response":"True"});
     result = Media.getComparison(m1, m2);
     expect(result.length).toEqual(5);
     expect(result[0]["name"]).toEqual("Director");
@@ -45,5 +45,16 @@ describe("Media", function() {
     expect(result[3]["name"]).toEqual("Year");
     expect(result[3]["first"]).toEqual(1980);
     expect(result[3]["second"]).toEqual(1983);
+    expect(result[2]["first"][2]).toEqual(result[2]["second"][2]);
+    expect(result[2]["first"].length).toEqual(result[2]["second"].length);
+    m1 = new Media("The Snowman", "tt0084701");
+    m1.load({"Title":"The Snowman","Year":"1982","Rated":"N/A","Released":"26 Dec 1982","Runtime":"26 min","Genre":"Animation, Short, Adventure","Director":"Dianne Jackson, Jimmy T. Murakami","Writer":"Raymond Briggs","Actors":"David Bowie, Raymond Briggs"});
+    result = Media.getComparison(m1, m2);
+    expect(result[2]["name"]).toEqual("Actors");
+    expect(result[2]["first"].length).toEqual(4);
+    expect(result[2]["first"][0]).toEqual("David Bowie");
+    expect(result[2]["first"][2]).toBe(undefined);
+    expect(result[2]["second"].length).toEqual(4);
+    expect(result[2]["second"][3]).toEqual("Carrie Fisher");
  });
 });
