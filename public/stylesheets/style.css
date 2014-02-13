@@ -84,6 +84,18 @@ a {
   padding-top: 15px;
 }
 
+.results-rating {
+  margin-top: 15px;
+  width: 45%;
+}
+
+.results-rating-label {
+  float: left;
+  text-align: center;
+  width: 10%;
+  padding-top: 13px;
+}
+
 .results-row .first, .results-row .second {
   width: 45%;
 }
