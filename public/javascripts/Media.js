@@ -5,14 +5,17 @@ function Media(Title, imdbID) {
 }
 
 Media.prototype.load = function (data) {
+  function getArray(string) {
+    return typeof string === 'undefined' ? [] : string.split(", ");
+  }
   this.Year = parseInt(data.Year);
   this.Rated = data.Rated;
   this.Released = data.Released;
   this.Runtime = data.Runtime;
   this.Genre = data.Genre;
-  this.Director = data.Director;
+  this.Director = getArray(data.Director);
   this.Writer = data.Writer;
-  this.Actors = data.Actors.split(", ");
+  this.Actors = getArray(data.Actors);
   this.Plot = data.Plot;
   this.Country = data.Country;
   this.Awards = data.Awards;

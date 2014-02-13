@@ -31,7 +31,7 @@ describe("Media", function() {
     var result = Media.getComparison(m1, m2);
     expect(result.length).toEqual(5);
     expect(result[0]["name"]).toEqual("Director");
-    expect(result[0]["first"]).toEqual("Irvin Kershner");
+    expect(result[0]["first"][0]).toEqual("Irvin Kershner");
     expect(result[0]["second"]).toEqual(undefined);
     expect(result[3]["name"]).toEqual("Year");
     expect(result[3]["first"]).toEqual(1980);
@@ -40,8 +40,8 @@ describe("Media", function() {
     result = Media.getComparison(m1, m2);
     expect(result.length).toEqual(5);
     expect(result[0]["name"]).toEqual("Director");
-    expect(result[0]["first"]).toEqual("Irvin Kershner");
-    expect(result[0]["second"]).toEqual("Richard Marquand");
+    expect(result[0]["first"][0]).toEqual("Irvin Kershner");
+    expect(result[0]["second"][0]).toEqual("Richard Marquand");
     expect(result[3]["name"]).toEqual("Year");
     expect(result[3]["first"]).toEqual(1980);
     expect(result[3]["second"]).toEqual(1983);
@@ -50,6 +50,8 @@ describe("Media", function() {
     m1 = new Media("The Snowman", "tt0084701");
     m1.load({"Title":"The Snowman","Year":"1982","Rated":"N/A","Released":"26 Dec 1982","Runtime":"26 min","Genre":"Animation, Short, Adventure","Director":"Dianne Jackson, Jimmy T. Murakami","Writer":"Raymond Briggs","Actors":"David Bowie, Raymond Briggs"});
     result = Media.getComparison(m1, m2);
+    expect(result[0]["name"]).toEqual("Director");
+    expect(result[0]["first"][1]).toEqual("Jimmy T. Murakami");
     expect(result[2]["name"]).toEqual("Actors");
     expect(result[2]["first"].length).toEqual(4);
     expect(result[2]["first"][0]).toEqual("David Bowie");
