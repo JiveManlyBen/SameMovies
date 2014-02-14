@@ -63,7 +63,7 @@ jQuery(function ($) {
         style = "progress-bar-warning";
       else if (normalized < 50 && normalized >= 25)
         style = "progress-bar-danger";
-      return $("<div class=\"progress results-rating " + side + "\"><div class=\"progress-bar " + style + " " + justify + "\" style=\"width: " + normalized + "%\"><span class=\"sr-only\"></span></div></div>");
+      return $("<div class=\"progress results-rating " + side + "\"><div class=\"progress-bar " + style + " " + justify + "\" style=\"width: " + normalized + "%\"><span class=\"\">" + rating + "/10.0</span></div></div>");
     }
     if ($("button.compare-results."+"first").length > 0 && $("button.compare-results."+"second").length > 0) {
       var ids = [];
