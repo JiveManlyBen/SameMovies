@@ -12,17 +12,19 @@ Media.prototype.load = function (data) {
     var writerMap = [], writerArray = [];
     stringArray.forEach(function(value, index) {
       var writer = new Writer(value);
-      if (typeof writerMap[writer.Name] === 'undefined')
+      if (typeof writerMap[writer.Name] === 'undefined') {
         writerMap[writer.Name] = writer;
-      else
+      }
+      else {
         writerMap[writer.Name].merge(writer);
+      }
     });
     for (var w in writerMap) {
       writerArray.push(w);
     }
     return writerArray;
   }
-  this.Year = parseInt(data.Year);
+  this.Year = parseInt(data.Year, 10);
   this.Rated = data.Rated;
   this.Released = data.Released;
   this.Runtime = data.Runtime;
@@ -38,7 +40,7 @@ Media.prototype.load = function (data) {
   this.imdbRating = parseFloat(data.imdbRating);
   this.Type = data.Type;
   this.isLoaded = true;
-}
+};
 
 Media.getComparison = function (m1, m2) {
   function alignArrays(list1, list2) {
@@ -69,12 +71,14 @@ Media.getComparison = function (m1, m2) {
       }
     }
     arr1.forEach(function(element, index) {
-      if (typeof element !== 'undefined')
+      if (typeof element !== 'undefined') {
         tmp1.push(element);
+      }
     });
     arr2.forEach(function(element, index) {
-      if (typeof element !== 'undefined')
+      if (typeof element !== 'undefined') {
         tmp2.push(element);
+      }
     });
     aligned.push(tmp1);
     aligned.push(tmp2);
@@ -86,8 +90,9 @@ Media.getComparison = function (m1, m2) {
       var aligned = alignArrays(m1[element], m2[element]);
       fields.push({name: element, first: aligned[0], second: aligned[1]});
     } 
-    else
+    else {
       fields.push({name: element, first: m1[element], second: m2[element]});
+    }
   });
   return fields;
-}
+};

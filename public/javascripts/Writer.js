@@ -11,6 +11,7 @@ Writer.prototype.merge = function (writer) {
     }
     return true;
   }
-  else
+  else {
     return false;
-}
+  }
+};

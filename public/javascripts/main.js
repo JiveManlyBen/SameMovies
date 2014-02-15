@@ -25,8 +25,9 @@ jQuery(function ($) {
         $("button.compare-results."+key).text(media.Title);       
         $("#"+key).val(media.Title);
       }
-      else
+      else {
         $(this).show();
+      }
     });
   }
   function getMediaFromListItem(e) {
@@ -48,8 +49,9 @@ jQuery(function ($) {
   function showComparison() {
     function getComparisonRow(name, first, second, isEqual, isFirst) {
       var extraClasses = "";
-      if (isEqual)
+      if (isEqual) {
         extraClasses = " btn-success";
+      }
       var nameButton = "<button type=\"button\" class=\"btn btn-default name" + extraClasses + "\">" + name + "</button>";
       var firstButton = "<button type=\"button\" class=\"btn btn-default first" + extraClasses + (typeof first !== 'undefined' ? '' : ' no-show') + "\">" + first + "</button>";
       var secondButton = "<button type=\"button\" class=\"btn btn-default second" + extraClasses + (typeof second !== 'undefined' ? '' : ' no-show') + "\">" + second + "</button>";
@@ -57,12 +59,15 @@ jQuery(function ($) {
     }
     function getRatingsRow(side, justify, rating) {
       var style = "", normalized = rating * 10;
-      if (normalized < 75 && normalized >= 50)
+      if (normalized < 75 && normalized >= 50) {
         style = "progress-bar-success";
-      else if (normalized < 50 && normalized >= 25)
+      }
+      else if (normalized < 50 && normalized >= 25) {
         style = "progress-bar-warning";
-      else if (normalized < 50 && normalized >= 25)
+      }
+      else if (normalized < 50 && normalized >= 25) {
         style = "progress-bar-danger";
+      }
       return $("<div class=\"progress results-rating " + side + "\"><div class=\"progress-bar " + style + " " + justify + "\" style=\"width: " + normalized + "%\"><span class=\"\">" + rating.toFixed(1) + "/10.0</span></div></div>");
     }
     if ($("button.compare-results."+"first").length > 0 && $("button.compare-results."+"second").length > 0) {
