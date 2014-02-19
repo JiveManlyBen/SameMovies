@@ -52,6 +52,8 @@ describe("Media", function() {
     result = Media.getComparison(m1, m2);
     expect(result[0]["name"]).toEqual("Director");
     expect(result[0]["first"][1]).toEqual("Jimmy T. Murakami");
+    expect(result[1]["name"]).toEqual("Writer");
+    expect(result[1]["first"][0] instanceof Writer).toBeTruthy();
     expect(result[2]["name"]).toEqual("Actors");
     expect(result[2]["first"].length).toEqual(4);
     expect(result[2]["first"][0]).toEqual("David Bowie");

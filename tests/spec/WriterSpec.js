@@ -22,4 +22,13 @@ describe("Writer", function() {
     expect(writer2.merge(writer3)).toBe(true);
     expect(writer3.merge(writer4)).toBe(false);
   });
+
+  it("should format display name", function() {
+    expect(writer1.getDisplayName()).toEqual("Will Ferrell");
+    expect(writer2.getDisplayName()).toEqual("Will Ferrell (screenplay)");
+    writer1.merge(writer2);
+    expect(writer1.getDisplayName()).toEqual("Will Ferrell (screenplay)");
+    writer1.merge(writer3);
+    expect(writer1.getDisplayName()).toEqual("Will Ferrell (screenplay, story)");
+  });
 });

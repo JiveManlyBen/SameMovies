@@ -47,14 +47,22 @@ jQuery(function ($) {
     });
   }
   function showComparison() {
-    function getComparisonRow(name, first, second, isEqual, isFirst) {
-      var extraClasses = "";
+    function getComparisonRow(name, first, second, isFirst) {
+      function getDisplayButton(extraClasses, positionClass, value) {
+        var displayValue, shouldDisplay = typeof value !== 'undefined';
+        displayValue = (value instanceof Writer) ? value.getDisplayName() : value;
+        return "<button type=\"button\" class=\"btn btn-default " + positionClass + " " + extraClasses + (shouldDisplay ? '' : ' no-show') + "\">" + displayValue + "</button>";
+      }
+      var extraClasses = "", isEqual = first === second;
+      if (first instanceof Writer && second instanceof Writer) {
+        isEqual = first.namesEqual(second);
+      }
       if (isEqual) {
         extraClasses = " btn-success";
       }
       var nameButton = "<button type=\"button\" class=\"btn btn-default name" + extraClasses + "\">" + name + "</button>";
-      var firstButton = "<button type=\"button\" class=\"btn btn-default first" + extraClasses + (typeof first !== 'undefined' ? '' : ' no-show') + "\">" + first + "</button>";
-      var secondButton = "<button type=\"button\" class=\"btn btn-default second" + extraClasses + (typeof second !== 'undefined' ? '' : ' no-show') + "\">" + second + "</button>";
+      var firstButton = getDisplayButton(extraClasses, "first", first);
+      var secondButton = getDisplayButton(extraClasses, "second", second);
       return $("<div class=\"btn-group results-row" + (isFirst ? " top" : "") + "\">" + firstButton + nameButton + secondButton + "</div>");
     }
     function getRatingsRow(side, justify, rating) {
@@ -81,11 +89,11 @@ jQuery(function ($) {
           if (e.first instanceof Array && e.second instanceof Array) {
             var maxElements = Math.max(e.first.length, e.second.length);
             for (var i = 0; i < maxElements; i++) {
-              $("#results-group").append(getComparisonRow(e.name, e.first[i], e.second[i], (e.first[i] === e.second[i]), (i === 0)));
+              $("#results-group").append(getComparisonRow(e.name, e.first[i], e.second[i], (i === 0)));
             }
           }
           else {
-            $("#results-group").append(getComparisonRow(e.name, e.first, e.second, (e.first === e.second), true));
+            $("#results-group").append(getComparisonRow(e.name, e.first, e.second, true));
           }
         });
         $("#results-group").append(getRatingsRow("left", "right", compareResults[ids[0]].imdbRating));

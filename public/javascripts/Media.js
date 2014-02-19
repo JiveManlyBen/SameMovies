@@ -20,7 +20,7 @@ Media.prototype.load = function (data) {
       }
     });
     for (var w in writerMap) {
-      writerArray.push(w);
+      writerArray.push(writerMap[w]);
     }
     return writerArray;
   }
@@ -44,11 +44,22 @@ Media.prototype.load = function (data) {
 
 Media.getComparison = function (m1, m2) {
   function alignArrays(list1, list2) {
+    function getIndexOf(testArray, value) {
+      if (value instanceof Writer) {
+        var strArray = [];
+        testArray.forEach(function(v, i) {
+          strArray[i] = typeof v === 'undefined' ? undefined : v.Name;
+        });
+        return strArray.indexOf(value.Name);
+      }
+      return testArray.indexOf(value);
+    }
     var arr1 = list1.slice(0), arr2 = list2.slice(0);
     var aligned = [], tmp1 = [], tmp2 = [];
+    var idx1, idx2;
     for(var i = 0, len = Math.max(arr1.length, arr2.length); i < len; i++) {
-      var idx1 = typeof arr1[i] === 'undefined' ? -1 : arr2.indexOf(arr1[i]);
-      var idx2 = typeof arr2[i] === 'undefined' ? -1 : arr1.indexOf(arr2[i]);
+      idx1 = typeof arr1[i] === 'undefined' ? -1 : getIndexOf(arr2, arr1[i]); 
+      idx2 = typeof arr2[i] === 'undefined' ? -1 : getIndexOf(arr1, arr2[i]);
       if (idx1 > -1) {
         tmp1.push(arr1[i]);
         tmp2.push(arr1[i]);
