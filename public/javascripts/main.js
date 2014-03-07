@@ -66,17 +66,22 @@ jQuery(function ($) {
       return $("<div class=\"btn-group results-row" + (isFirst ? " top" : "") + "\">" + firstButton + nameButton + secondButton + "</div>");
     }
     function getRatingsRow(side, justify, rating) {
-      var style = "", normalized = rating * 10;
+      var style = "progress-bar ", normalized = rating * 10, ratingDisplay = rating.toFixed(1) + "/10.0";
       if (normalized < 75 && normalized >= 50) {
-        style = "progress-bar-success";
+        style += "progress-bar-success";
       }
       else if (normalized < 50 && normalized >= 25) {
-        style = "progress-bar-warning";
+        style += "progress-bar-warning";
       }
       else if (normalized < 50 && normalized >= 25) {
-        style = "progress-bar-danger";
+        style += "progress-bar-danger";
       }
-      return $("<div class=\"progress results-rating " + side + "\"><div class=\"progress-bar " + style + " " + justify + "\" style=\"width: " + normalized + "%\"><span class=\"\">" + rating.toFixed(1) + "/10.0</span></div></div>");
+      else if (isNaN(normalized)) {
+        style = "progress-blank";
+        normalized = 100;
+        ratingDisplay = "Not yet rated";
+      }
+      return $("<div class=\"progress results-rating " + side + "\"><div class=\"" + style + " " + justify + "\" style=\"width: " + normalized + "%\"><span class=\"\">" + ratingDisplay + "</span></div></div>");
     }
     if ($("button.compare-results."+"first").length > 0 && $("button.compare-results."+"second").length > 0) {
       var ids = [];

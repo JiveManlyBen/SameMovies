@@ -87,6 +87,7 @@ a {
 .results-rating {
   margin-top: 15px;
   width: 45%;
+  margin-right: 1px;
 }
 
 .results-rating-label {
@@ -94,6 +95,7 @@ a {
   text-align: center;
   width: 10%;
   padding-top: 13px;
+  margin-right: -3px;
 }
 
 .results-row .first, .results-row .second {
@@ -102,6 +104,18 @@ a {
 
 .results-row .name {
   width: 10%;
+}
+
+.progress-blank {
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #000000;
+  text-align: center;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
 }
 
 .left {
