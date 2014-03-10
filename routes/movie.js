@@ -61,7 +61,12 @@ exports.compare = function(req, res){
       options.path = pathForSearch(terms[1]);
       var result1 = parseResults(chunk1);
       if (result1 instanceof Array)
-        result1 = result1.filter(movieFilter);
+        if (req.body.type === "movie") {
+          result1 = result1.filter(movieFilter);
+        }
+        else {
+          result1 = [];
+        }
       if (result1 !== undefined && result1.length > 0)
         options.page.results.push(result1);
       else
@@ -73,7 +78,12 @@ exports.compare = function(req, res){
           console.log('body: ' + chunk2);
           var result2 = parseResults(chunk2);
           if (result2 instanceof Array)
-            result2 = result2.filter(movieFilter);
+            if (req.body.type === "movie") {
+              result2 = result2.filter(movieFilter);
+            }
+            else {
+              result2 = [];
+            }
           if (result2 !== undefined && result2.length > 0)
             options.page.results.push(result2);
           else
