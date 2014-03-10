@@ -16,6 +16,13 @@
 <% } %>
 </div>
 
+        <% if (results != null && results[0] !== null && results[1] !== null) { %>
+<div class="compare-details-control">
+  <a id="compare-details-expand" href="#"><span class="glyphicon glyphicon-expand"></span>Details</a>
+  <a id="compare-details-collapse" href="#" style="display: none;"><span class="glyphicon glyphicon-collapse-down"></span>Hide</a>
+</div>
+        <% } %>
+
 <div class="compare-results btn-group right">
 <% if (results[1] !== null) { %>
   <button type="button" class="btn btn-default dropdown-toggle compare-results second" data-toggle="dropdown" value="<%= results[1][0].imdbID %>"><%= results[1][0].Title %><span class="caret"></span></button>

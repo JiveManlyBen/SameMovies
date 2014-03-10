@@ -106,6 +106,17 @@ a {
   width: 10%;
 }
 
+.compare-details-control {
+  float: left;
+  padding-left: 18px;
+  padding-top: 7px;
+  width: 10%;
+}
+
+.glyphicon-expand {
+  margin-right: 2px;
+}
+
 .progress-blank {
   height: 100%;
   font-size: 12px;

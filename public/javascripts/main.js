@@ -90,6 +90,8 @@ jQuery(function ($) {
       if (compareResults[ids[0]].isLoaded && compareResults[ids[1]].isLoaded) {
         var arr = Media.getComparison(compareResults[ids[0]], compareResults[ids[1]]);
         $("#results-group").empty();
+        $("#results-group").append("<div class=\"left results-plot\" style=\"width: 45%; display: none;\">" + compareResults[ids[0]].Plot + "</div>");
+        $("#results-group").append("<div class=\"right results-plot\" style=\"width: 45%; display: none;\">" + compareResults[ids[1]].Plot + "</div>");
         arr.map(function(e) {
           if (e.first instanceof Array && e.second instanceof Array) {
             var maxElements = Math.max(e.first.length, e.second.length);
@@ -121,6 +123,18 @@ jQuery(function ($) {
     showComparison();
     $(this).parents(".btn-group").removeClass("open");
     event.preventDefault();
+    return false;
+  });
+  $("#compare-details-expand").click(function(event){
+    $(this).hide();
+    $("#compare-details-collapse").show();
+    $(".results-plot").show();
+    return false;
+  });
+  $("#compare-details-collapse").click(function(event){
+    $(this).hide();
+    $("#compare-details-expand").show();
+    $(".results-plot").hide();
     return false;
   });
 });
