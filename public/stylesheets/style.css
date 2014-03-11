@@ -113,7 +113,12 @@ a {
   width: 10%;
 }
 
-.glyphicon-expand {
+.results-details {
+  width: 45%;
+  padding-top: 10px;
+}
+
+.compare-details-icon {
   margin-right: 2px;
 }
 

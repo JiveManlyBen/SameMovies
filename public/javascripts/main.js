@@ -83,6 +83,12 @@ jQuery(function ($) {
       }
       return $("<div class=\"progress results-rating " + side + "\"><div class=\"" + style + " " + justify + "\" style=\"width: " + normalized + "%\"><span class=\"\">" + ratingDisplay + "</span></div></div>");
     }
+    function getDetailsRow(side, image, plot) {
+      var detailsRow = "<div class=\"" + side + " results-details\" style=\"display: none;\">";
+      detailsRow += "<div class=\"results-plot\">" + plot + "</div>";
+      detailsRow += "</div>";
+      return detailsRow;
+    }
     if ($("button.compare-results."+"first").length > 0 && $("button.compare-results."+"second").length > 0) {
       var ids = [];
       ids[0] = $("button.compare-results."+"first").val();
@@ -90,8 +96,9 @@ jQuery(function ($) {
       if (compareResults[ids[0]].isLoaded && compareResults[ids[1]].isLoaded) {
         var arr = Media.getComparison(compareResults[ids[0]], compareResults[ids[1]]);
         $("#results-group").empty();
-        $("#results-group").append("<div class=\"left results-plot\" style=\"width: 45%; display: none;\">" + compareResults[ids[0]].Plot + "</div>");
-        $("#results-group").append("<div class=\"right results-plot\" style=\"width: 45%; display: none;\">" + compareResults[ids[1]].Plot + "</div>");
+        $("#results-group").append(getDetailsRow("left", null, compareResults[ids[0]].Plot));
+        $("#results-group").append(getDetailsRow("right", null, compareResults[ids[1]].Plot));
+        $("#results-group").append("<div class=\"clear\"></div>");
         arr.map(function(e) {
           if (e.first instanceof Array && e.second instanceof Array) {
             var maxElements = Math.max(e.first.length, e.second.length);
@@ -128,13 +135,13 @@ jQuery(function ($) {
   $("#compare-details-expand").click(function(event){
     $(this).hide();
     $("#compare-details-collapse").show();
-    $(".results-plot").show();
+    $(".results-details").show();
     return false;
   });
   $("#compare-details-collapse").click(function(event){
     $(this).hide();
     $("#compare-details-expand").show();
-    $(".results-plot").hide();
+    $(".results-details").hide();
     return false;
   });
 });
