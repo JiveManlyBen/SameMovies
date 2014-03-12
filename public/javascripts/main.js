@@ -22,7 +22,7 @@ jQuery(function ($) {
       if (media.imdbID === selectedID) {
         $(this).hide();
         $("button.compare-results."+key).val(media.imdbID);
-        $("button.compare-results."+key).text(media.Title);       
+        $("button.compare-results."+key).html(media.Title + "<span class=\"caret\"></span>");      
         $("#"+key).val(media.Title);
       }
       else {
