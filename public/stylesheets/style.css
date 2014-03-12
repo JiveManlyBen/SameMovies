@@ -118,6 +118,23 @@ a {
   padding-top: 10px;
 }
 
+.results-image {
+  padding-right: 20px;
+}
+
+.results-plot {
+  display: table-cell;
+  font-size: 1.5em;
+}
+
+.results-poster {
+  width: 200px;
+}
+
+.results-poster-default {
+  opacity: 0.4;
+}
+
 .compare-details-icon {
   margin-right: 2px;
 }
