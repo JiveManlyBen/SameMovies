@@ -86,7 +86,7 @@ jQuery(function ($) {
     }
     function getDetailsRow(side, image, plot, imdbID) {
       var detailsRow = "<div class=\"" + side + " results-details\" style=\"display: none;\">";
-      if (image === "N/A") {
+      if (image === "N/A" || true) {
         detailsRow += "<div class=\"results-image left\"><a href=\"http://www.imdb.com/title/" + imdbID + "/\" target=\"_blank\"><img class=\"results-poster-default\" src=\"/images/default_poster.png\"></a></div>";
       }      
       else {
