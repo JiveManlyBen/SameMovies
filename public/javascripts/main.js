@@ -24,7 +24,6 @@ jQuery(function ($) {
         $("button.compare-results."+key).val(media.imdbID);
         $("button.compare-results."+key).html(media.Title + "<span class=\"caret\"></span>");      
         $("#"+key).val(media.Title);
-        $("#compare-details-collapse").click();
       }
       else {
         $(this).show();
@@ -84,8 +83,8 @@ jQuery(function ($) {
       }
       return $("<div class=\"progress results-rating " + side + "\"><div class=\"" + style + " " + justify + "\" style=\"width: " + normalized + "%\"><span class=\"\">" + ratingDisplay + "</span></div></div>");
     }
-    function getDetailsRow(side, image, plot, imdbID) {
-      var detailsRow = "<div class=\"" + side + " results-details\" style=\"display: none;\">";
+    function getDetailsRow(side, image, plot, imdbID, show) {
+      var detailsRow = "<div class=\"" + side + " results-details\"" + (show ? "" : " style=\"display: none;\"") + ">";
       if (image === "N/A" || true) {
         detailsRow += "<div class=\"results-image left\"><a href=\"http://www.imdb.com/title/" + imdbID + "/\" target=\"_blank\"><img class=\"results-poster-default\" src=\"/images/default_poster.png\"></a></div>";
       }      
@@ -103,9 +102,10 @@ jQuery(function ($) {
       ids[1] = $("button.compare-results."+"second").val();
       if (compareResults[ids[0]].isLoaded && compareResults[ids[1]].isLoaded) {
         var arr = Media.getComparison(compareResults[ids[0]], compareResults[ids[1]]);
+        var show = $("#compare-details-collapse").is(":visible") ? true : false;
         $("#results-group").empty();
-        $("#results-group").append(getDetailsRow("left", compareResults[ids[0]].Poster, compareResults[ids[0]].Plot, compareResults[ids[0]].imdbID));
-        $("#results-group").append(getDetailsRow("right", compareResults[ids[1]].Poster, compareResults[ids[1]].Plot, compareResults[ids[1]].imdbID));
+        $("#results-group").append(getDetailsRow("left", compareResults[ids[0]].Poster, compareResults[ids[0]].Plot, compareResults[ids[0]].imdbID, show));
+        $("#results-group").append(getDetailsRow("right", compareResults[ids[1]].Poster, compareResults[ids[1]].Plot, compareResults[ids[1]].imdbID, show));
         $("#results-group").append("<div class=\"clear\"></div>");
         arr.map(function(e) {
           if (e.first instanceof Array && e.second instanceof Array) {
